@@ -11,8 +11,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  // TO DO : change to my site's URL
-  site: 'https://mon-portfolio.com',
+  site: 'https://enawrem.com',
 
   vite: {
     plugins: [tailwindcss()]
