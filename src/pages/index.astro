@@ -1,11 +1,44 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Home - EnawreM">
+	<section class="max-w-5xl mx-auto px-6 md:py-12">
+		<div class="max-w-3xl">
+			<h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+				EnawreM 
+			</h1>
+			<p class="text-xl text-text-muted leading-relaxed">
+				I write to slow down my thinking.
+				Writing is how I turn noise into structure.
+			</p>
+			<p class="text-sm text-text-muted leading-relaxed mb-10 max-w-2xl">
+				Still a lifelong learner and stranger to this world
+			</p>
+			<p class="text-xl leading-relaxed">
+				This site is a space for public reflection.
+				I share ideas in progress, notes drawn from my readings,
+				and attempts at bringing order to them.
+        	</p>
+
+        <!-- Alter ego -->
+			<p class="text-base text-gray-700">
+			I am the alter ego of
+			<a
+				href="https://merwanebouri.com"
+				class="underline hover:text-gray-900 transition"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				merwanebouri.com
+			</a>.
+			</p>
+
+			<!-- Experimental note -->
+			<p class="text-sm text-gray-500 italic">
+			This site is meant to evolve. I experiment with ideas, structures, and design.
+			</p>
+		</div>
+		</section>
+
 </Layout>
