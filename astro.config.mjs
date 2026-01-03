@@ -9,6 +9,8 @@ import sitemap from '@astrojs/sitemap';
 
 import cloudflare from '@astrojs/cloudflare';
 
+import partytown from '@astrojs/partytown';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://enawrem.com',
@@ -17,6 +19,6 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), partytown()],
   adapter: cloudflare()
 });
