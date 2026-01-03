@@ -15,11 +15,24 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title}>
-	<article>
-		<h1>{post.data.title}</h1>
-		<time datetime={post.data.pubDate.toISOString()}>
-			{post.data.pubDate.toLocaleDateString('fr-fr')}
-		</time>
-		<hr />
-		<Content /> </article>
+	<main class="max-w-3xl mx-auto px-6 py-20">
+		<article>
+			<header class="mb-12">
+				<time class="text-text-muted font-medium">
+					{post.data.pubDate.toLocaleDateString('fr-fr', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric',
+					})}
+				</time>
+				<h1 class="text-4xl md:text-5xl font-black mt-2 leading-tight">
+					{post.data.title}
+				</h1>
+			</header>
+			
+			<div class="prose prose-slate lg:prose-xl max-w-none">
+				<Content />
+			</div>
+		</article>
+	</main>
 </Layout>
