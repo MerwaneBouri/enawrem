@@ -1,9 +1,17 @@
 ---
+import HeaderLink from './HeaderLink.astro';
 ---
-<header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/about">About</a>
-    </nav>
+
+<header class="border-b border-border bg-bg-page/80 backdrop-blur-md sticky top-0 z-50">
+  <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold tracking-tighter">
+      ENAWREM
+    </a>
+
+    <div class="flex gap-6 text-sm font-medium">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+  </nav>
 </header>
