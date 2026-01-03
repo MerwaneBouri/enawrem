@@ -1,28 +1,41 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
 
-const posts = await getCollection('blog');
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
-<Layout title="Blog">
-	<main>
-		<h1>My Blog</h1>
-		<ul>
-            {posts.map((post) => (
-                <li>
-                    <a href={`/blog/${post.slug}`}>
-                        {post.data.title}
-                    </a>
-                    <time datetime={post.data.pubDate.toISOString()}>
-                        {new Date(post.data.pubDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                        })}
-                    </time>
-                </li>
-            ))}
-        </ul>
+<Layout title="Blog - Mon Portfolio">
+	<main class="max-w-5xl mx-auto px-6 py-20">
+		<header class="mb-16">
+			<h1 class="text-4xl font-black mb-4">Articles & Pensées</h1>
+			<p class="text-text-muted text-lg">Partage d'expériences sur le développement et le design.</p>
+		</header>
+
+		<div class="grid gap-12">
+			{posts.map((post) => (
+				<article class="group">
+					<a href={`/blog/${post.slug}/`} class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
+						<time class="text-sm font-medium text-text-muted tabular-nums min-w-[120px]">
+							{post.data.pubDate.toLocaleDateString('fr-fr', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric',
+							})}
+						</time>
+						<div>
+							<h2 class="text-2xl font-bold group-hover:text-brand transition-colors mb-2">
+								{post.data.title}
+							</h2>
+							<p class="text-text-muted leading-relaxed">
+								{post.data.description}
+							</p>
+						</div>
+					</a>
+				</article>
+			))}
+		</div>
 	</main>
 </Layout>
