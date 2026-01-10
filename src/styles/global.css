@@ -2,25 +2,36 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Palette Professionnelle : Gris Ardoise (Slate) */
-  --color-brand: #0f172a;       /* Slate 900 */
-  --color-bg-page: #ffffff;
-  --color-text-main: #1e293b;   /* Slate 800 */
-  --color-text-muted: #64748b; /* Slate 500 */
-  --color-border: #e2e8f0;     /* Slate 200 */
+  /* On définit les variables de base */
+  --color-brand: var(--brand);
+  --color-bg-page: var(--bg-page);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+}
 
-  /* Typographie */
-  --font-sans: "Inter", system-ui, sans-serif;
+/* Les valeurs par défaut (Mode Clair) */
+:root {
+  --brand: #0f172a;       /* Slate 900 */
+  --bg-page: #fbfaf8;
+  --text-main: #323330;   /* Slate 800 */
+  --text-muted: #64748b;  /* Slate 500 */
+  --border: #e5e5e0;      /* Slate 200 */
+}
+
+/* Les valeurs quand la classe .dark est active */
+:root.dark {
+  --brand: #f8fafc;       /* Slate 50 */
+  --bg-page: #0f172a;     /* Slate 900 */
+  --text-main: #f1f5f9;   /* Slate 100 */
+  --text-muted: #94a3b8;  /* Slate 400 */
+  --border: #1e293b;      /* Slate 800 */
 }
 
 @layer base {
   body {
     background-color: var(--color-bg-page);
     color: var(--color-text-main);
-    @apply antialiased font-sans;
-  }
-
-  h1, h2, h3 {
-    @apply font-bold text-brand tracking-tight;
+    @apply transition-colors duration-300 antialiased;
   }
 }
