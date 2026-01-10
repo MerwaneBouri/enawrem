@@ -1,0 +1,42 @@
+<button 
+  id="theme-toggle" 
+  class="p-2 rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 transition-all cursor-pointer text-xl"
+>
+  <span id="theme-icon">🌙</span>
+</button>
+
+<script is:inline>
+  // On récupère les éléments
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  const html = document.documentElement;
+
+  // Fonction simple pour mettre à jour l'icône visuellement
+  const updateIcon = (isDark) => {
+    icon.innerText = isDark ? '☀️' : '🌙';
+  };
+
+  // 1. Au chargement : on vérifie ce qui est enregistré
+  const savedTheme = localStorage.getItem('theme') || 
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  // Appliquer le thème initial
+  if (savedTheme === 'dark') {
+    html.classList.add('dark');
+    updateIcon(true);
+  } else {
+    html.classList.remove('dark');
+    updateIcon(false);
+  }
+
+  // 2. Au clic : on bascule tout
+  btn.addEventListener('click', () => {
+    const isNowDark = html.classList.toggle('dark'); // Ajoute ou enlève .dark
+    
+    // Mettre à jour l'icône
+    updateIcon(isNowDark);
+    
+    // Sauvegarder le choix
+    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+  });
+</script>
