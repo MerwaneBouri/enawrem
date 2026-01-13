@@ -17,7 +17,11 @@ const { Content } = await post.render();
 <Layout title={post.data.title}>
   <main class="max-w-3xl mx-auto px-6 py-20">
     <header class="mb-12">
-        <time class="text-sm opacity-60 italic">{post.data.pubDate.toLocaleDateString()}</time>
+        <time class="text-sm opacity-60 italic">{post.data.pubDate.toLocaleDateString('fr-fr', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric',
+							})}</time>
         <h1 class="text-4xl font-bold mt-2 leading-tight">{post.data.title}</h1>
     </header>
 
