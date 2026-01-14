@@ -5,54 +5,73 @@
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-display: "Plus Jakarta Sans", sans-serif;
-  
-  --color-lavender: #C3A6FF;
-  --color-mint: #B9FBC0;
-  --color-sky: #A2D2FF;
-  --color-pink: #FFC4DD;
-  --color-peach: #FFD8BE;
+  --color-brand-accent: var(--brand-accent);
+  --color-text-main: var(--text-main);
+  --color-bg-page: var(--bg-page);
 }
 
-/* ÉTAT 1 : MODE CLAIR (Par défaut) */
+/* --- VARIABLES CENTRALISÉES --- */
 :root {
-  --bg-page: #fbfaf8;    /* Blanc cassé Claude */
-  --text-main: #242423;  /* Gris très sombre */
+  --bg-page: #fbfaf8;
+  --text-main: #1a1a1a;
+  --brand-accent: #7c3aed;
+  
   --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.1);
 
-  /* Variables pour le Blog (Typography) */
   --tw-prose-body: var(--text-main);
-  --tw-prose-headings: var(--text-main);
+  --tw-prose-headings: var(--brand-accent);
 }
 
-/* ÉTAT 2 : MODE SOMBRE */
 :root.dark {
-  --bg-page: #0a0a0c;    /* Noir profond */
-  --text-main: #f1f5f9;  /* Blanc cassé */
+  --bg-page: #050505;
+  --text-main: #ffffff;
+  --brand-accent: #C3A6FF;
+  
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.1);
 
-  /* Variables pour le Blog (Typography) */
-  --tw-prose-body: var(--text-main);
-  --tw-prose-headings: var(--text-main);
+  --tw-prose-body: #ffffff;
+  --tw-prose-headings: var(--brand-accent);
 }
 
+/* --- LOGIQUE DE BASE (C'est ici que ça bloquait) --- */
 @layer base {
   body {
     font-family: var(--font-sans);
+    /* CETTE LIGNE CI-DESSOUS RÉPARE LE FOND NOIR */
     background-color: var(--bg-page);
     color: var(--text-main);
-    @apply transition-colors duration-300 antialiased tracking-tight;
+    @apply transition-colors duration-300 antialiased;
   }
 
-  h1, h2, h3 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    color: var(--brand-accent);
+    @apply transition-colors duration-300;
   }
 }
 
+/* --- BLOG (TYPOGRAPHY) --- */
+.prose {
+  --tw-prose-headings: var(--brand-accent);
+  --tw-prose-body: var(--text-main);
+  --tw-prose-bold: var(--text-main);
+  --tw-prose-links: var(--brand-accent);
+  --tw-prose-bullets: var(--brand-accent);
+  --tw-prose-counters: var(--brand-accent);
+  max-width: 100%;
+}
+
+.prose :is(h1, h2, h3, h4) {
+  color: var(--brand-accent) !important;
+}
+
+/* --- COMPOSANT GLASS --- */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
+  @apply transition-all duration-300;
 }

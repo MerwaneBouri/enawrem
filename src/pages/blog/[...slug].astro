@@ -15,17 +15,12 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title}>
-  <main class="max-w-3xl mx-auto px-6 py-20 pt-30">
+  <main class="max-w-3xl mx-auto px-6 pt-40 pb-20">
     <header class="mb-12">
-        <time class="text-sm opacity-60 italic">{post.data.pubDate.toLocaleDateString('fr-fr', {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric',
-							})}</time>
-        <h1 class="text-4xl font-bold mt-2 leading-tight">{post.data.title}</h1>
+        <h1 class="text-5xl font-black italic">{post.data.title}</h1>
     </header>
 
-    <article class="prose lg:prose-lg dark:prose-invert">
+    <article class="prose">
       <Content />
     </article>
   </main>
