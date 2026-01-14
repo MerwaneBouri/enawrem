@@ -7,22 +7,25 @@ const posts = allPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.
 ---
 
 <Layout title="Blog">
-    <main class="max-w-5xl mx-auto px-6 pt-30 pb-20"> 
-        <header class="mb-16">
-            <h1 class="text-6xl font-extrabold text-lavender italic pb-4 tracking-tighter uppercase">
+    <main class="max-w-5xl mx-auto px-6 pt-48 pb-20"> 
+        <header class="mb-16 animate-fade-up"> <h1 class="text-6xl font-black italic pb-4 tracking-tighter uppercase">
                 Blog
             </h1>
         </header>
 
         <div class="grid gap-8 md:grid-cols-2">
-            {posts.map((post) => (
-                <a href={`/blog/${post.slug}/`} class="group block no-underline">
+            {posts.map((post, i) => ( // On récupère l'index 'i'
+                <a 
+                  href={`/blog/${post.slug}/`} 
+                  class="group block no-underline animate-fade-up"
+                  style={`animation-delay: ${i * 0.1}s;`} 
+                >
                     <article class="h-full glass p-8 rounded-3xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(195,166,255,0.1)]">
                         <div class="relative z-10">
-                            <time class="text-lavender font-mono text-xs uppercase tracking-widest">
-                                {post.data.pubDate.toLocaleDateString('fr-fr', { year: 'numeric', month: 'long', day: 'numeric' })}
+                            <time class="text-brand-accent font-mono text-xs uppercase tracking-widest">
+                                {post.data.pubDate.toLocaleDateString()}
                             </time>
-                            <h2 class="text-2xl font-bold mt-3 group-hover:text-sky transition-colors">
+                            <h2 class="text-2xl font-bold mt-3 group-hover:opacity-80 transition-opacity">
                                 {post.data.title}
                             </h2>
                             <p class="opacity-70 mt-4 line-clamp-2">
