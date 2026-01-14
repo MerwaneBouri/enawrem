@@ -1,46 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700;1,800&display=swap');
 @import "tailwindcss";
-@plugin "@tailwindcss/typography"; /* On active le plugin proprement */
+@plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand: var(--brand);
-  --color-bg-page: var(--bg-page);
-  --color-text-main: var(--text-main);
-  --color-border: var(--border);
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  
+  --color-lavender: #C3A6FF;
+  --color-mint: #B9FBC0;
+  --color-sky: #A2D2FF;
+  --color-pink: #FFC4DD;
+  --color-peach: #FFD8BE;
 }
 
+/* ÉTAT 1 : MODE CLAIR (Par défaut) */
 :root {
-  --brand: #1a1a1a;
-  --bg-page: #fbfaf8;    /* Claude Light */
-  --text-main: #323330;
-  --border: #e5e5e0;
+  --bg-page: #fbfaf8;    /* Blanc cassé Claude */
+  --text-main: #242423;  /* Gris très sombre */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+
+  /* Variables pour le Blog (Typography) */
+  --tw-prose-body: var(--text-main);
+  --tw-prose-headings: var(--text-main);
 }
 
+/* ÉTAT 2 : MODE SOMBRE */
 :root.dark {
-  --brand: #f8fafc;
-  --bg-page: #0f172a;    /* Claude Dark */
-  --text-main: #f1f5f9;
-  --border: #1e293b;
+  --bg-page: #0a0a0c;    /* Noir profond */
+  --text-main: #f1f5f9;  /* Blanc cassé */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Variables pour le Blog (Typography) */
+  --tw-prose-body: var(--text-main);
+  --tw-prose-headings: var(--text-main);
 }
 
 @layer base {
   body {
-    background-color: var(--color-bg-page);
-    color: var(--color-text-main);
-    @apply transition-colors duration-300;
+    font-family: var(--font-sans);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    @apply transition-colors duration-300 antialiased tracking-tight;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
   }
 }
 
-/* La méthode élégante : On customise la classe .prose */
-.prose {
-  /* On dit à la classe prose d'utiliser NOS variables */
-  --tw-prose-body: var(--text-main);
-  --tw-prose-headings: var(--text-main);
-  --tw-prose-links: var(--brand);
-  --tw-prose-bold: var(--text-main);
-  --tw-prose-counters: var(--text-main); /* Gère les numéros 1. 2. 3. */
-  --tw-prose-bullets: var(--text-main);  /* Gère les puces */
-  --tw-prose-quotes: var(--text-main);
-  --tw-prose-hr: var(--border);
-  
-  max-width: 100%; /* Évite que le texte soit trop étroit */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
 }
