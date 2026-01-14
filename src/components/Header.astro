@@ -3,16 +3,14 @@ import HeaderLink from './HeaderLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<header class="border-b border-border bg-bg-page/80 backdrop-blur-md sticky top-0 z-50">
-  <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="text-xl font-bold tracking-tighter">
-      ENAWREM
-    </a>
-
-    <div class="flex gap-6 text-sm font-medium">
-      <HeaderLink href="/">Accueil</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">À propos</HeaderLink>
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl">
+  <nav class="glass rounded-2xl px-6 py-3 flex justify-between items-center transition-all hover:border-white/20">
+    <a href="/" class="font-bold text-lavender hover:text-sky transition-colors text-xl tracking-tighter">
+  ENAWREM.
+</a>
+    <div class="flex gap-6 items-center">
+      <a href="/blog" class="hover:text-neon-cyan transition-colors">Blog</a>
+      <a href="/about" class="hover:text-neon-pink transition-colors">About</a>
       <ThemeToggle />
     </div>
   </nav>
